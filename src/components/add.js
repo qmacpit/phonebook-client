@@ -40,16 +40,22 @@ class Add extends Component {
   render() {
     return (
       <div>
-        <h3>Add new contact</h3>
+        <h5>Add new contact</h5>        
         <form onSubmit={this.onSubmit.bind(this)}>
-          <div>name</div>
-          <input type="text" onChange={this.bindOnChangeHandler('name')}/>
-          <div>mobile</div>
-          <input type="text" onChange={this.bindOnChangeHandler('mobile')}/>
-          <div>email</div>
-          <input type="text" onChange={this.bindOnChangeHandler('email')}/>
-          <button type="submit">add</button>
-        </form>
+          <div>
+            <div>name</div>
+            <input type="text" className="u-full-width" onChange={this.bindOnChangeHandler('name')}/>
+          </div>
+          <div class="six columns">
+            <div>mobile</div>
+            <input type="text" className="u-full-width" onChange={this.bindOnChangeHandler('mobile')}/>
+          </div>
+          <div class="six columns">
+            <div>email</div>
+            <input type="text" className="u-full-width" onChange={this.bindOnChangeHandler('email')}/>          
+          </div>
+          <input className="button-primary" type="submit" value="Submit" />            
+        </form>        
       </div>
     );
   }

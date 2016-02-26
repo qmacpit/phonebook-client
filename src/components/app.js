@@ -17,22 +17,31 @@ class App extends Component {
 
   render() {
     return (
-      <div>
-        <h3>Phonebook</h3>        
+      <div>            
         {
           this.props.contacts.map
-          ? this.props.contacts.map((current, index) => {
-            return (
-              <div key={index}>
-                <Link to={`/details/${current.id}`}>{current.name}</Link>
+          ? (
+              <div className="six columns">
+                <h5>Contacts</h5>  
+                <ul>
+                  {
+                  this.props.contacts.map((current, index) => {                        
+                    return (
+                      <li key={index}>
+                        <Link to={`/details/${current.id}`}>{current.name}</Link>
+                      </li>
+                    )
+                  })
+                  }
+                </ul>
+                <Link className='button' to='/add'>add new</Link>
               </div>
-            )
-          })
+            )            
           : ''
-        }
-        <br/>
-        <Link to='/add'>add new</Link>
-        {this.props.children}
+        }                
+        <div className="six columns">
+          {this.props.children}
+        </div>
       </div>
     );
   }
