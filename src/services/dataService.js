@@ -24,7 +24,7 @@ export function getContacts() {
   });  
 }
 
-export function getContact(id) {
+export function getContactDetails(id) {
   return new Promise((resolve) => {    
     for (let current of contacts) {
       if (current.id === id)

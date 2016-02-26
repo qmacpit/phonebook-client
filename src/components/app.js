@@ -22,7 +22,11 @@ class App extends Component {
         {
           this.props.contacts.map
           ? this.props.contacts.map((current, index) => {
-            return <div key={index}>{current.name}</div>
+            return (
+              <div key={index}>
+                <Link to={`/details/${current.id}`}>{current.name}</Link>
+              </div>
+            )
           })
           : ''
         }
