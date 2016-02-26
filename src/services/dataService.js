@@ -1,4 +1,4 @@
-const contacts = [
+var contacts = [
   {
     id: 1,
     name: 'John Doe',
@@ -32,4 +32,11 @@ export function getContactDetails(id) {
     }
     return resolve({});
   });  
+}
+
+export function createContact(contact) {
+  return new Promise((resolve) => {    
+    contacts.push(contact);
+    return resolve(contacts.length);
+  });    
 }

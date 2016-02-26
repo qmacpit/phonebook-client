@@ -1,10 +1,11 @@
-import { getContacts, getContactDetails } from '../services/dataService';
+import { getContacts, getContactDetails, createContact } from '../services/dataService';
 import { findIndexById } from '../utils';
 
 export const ACTIONS = {
   CONTACTS_REQUEST: 'contacts_req',
   CONTACTS_RESPONSE: 'contacts_res',
-  CONTACT_DETAILS_RESPONSE: 'contact_details_res'
+  CONTACT_DETAILS_RESPONSE: 'contact_details_res',
+  CONTACT_CREATE_RESPONSE: 'contact_create_res'
 };
 
 function contactsRequest() {
@@ -19,6 +20,14 @@ function contactsResponse(contacts) {
     type: ACTIONS.CONTACTS_RESPONSE,
     contacts
   }
+}
+
+function addConcactResponse(id, contact) {
+  return {
+    type: ACTIONS.CONTACT_CREATE_RESPONSE,
+    id, 
+    contact
+  };
 }
 
 function contactDetailsResponse(id, details) {
@@ -61,5 +70,13 @@ export function contactDetails(id) {
     let details = state.contacts[index].details;
     if (!details)
       return dispatch(performGetContactDetails(id));    
+  }  
+}
+
+export function newContact(contact) {
+  return (dispatch, getState) => {    
+    return createContact(contact)
+    .then(id => dispatch(addConcactResponse(id, contact)));
+    // return dispatch(performGetContactDetails(id));    
   }  
 }

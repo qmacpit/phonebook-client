@@ -31,7 +31,8 @@ class App extends Component {
           : ''
         }
         <br/>
-        <Link to='/about'>about</Link>
+        <Link to='/add'>add new</Link>
+        {this.props.children}
       </div>
     );
   }

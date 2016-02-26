@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { contacts, contactDetails } from '../actions/actions';
 import { findIndexById } from '../utils';
 
-class App extends Component {
+class Details extends Component {
   
   constructor(props) {
     super(props);    
@@ -32,7 +32,7 @@ class App extends Component {
               <div>{contact.id}</div>
               <div>{contact.name}</div>            
               <div>{contact.mobile}</div>            
-              <div>{contact.email}</div>          
+              <div>{contact.mail}</div>          
             </div>            
           )
           : ''
@@ -49,4 +49,4 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps)(App)
+export default connect(mapStateToProps)(Details)
