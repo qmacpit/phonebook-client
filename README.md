@@ -1,7 +1,11 @@
-react-hot-boilerplate
+phonebook-client
 =====================
 
-The minimal dev environment to enable live-editing React components.
+simple phonebook demo:
+ - clienside only
+ - react
+ - react-router
+ - redux
 
 ### Usage
 
