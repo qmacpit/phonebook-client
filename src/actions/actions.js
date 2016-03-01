@@ -5,7 +5,9 @@ export const ACTIONS = {
   CONTACTS_REQUEST: 'contacts_req',
   CONTACTS_RESPONSE: 'contacts_res',
   CONTACT_DETAILS_RESPONSE: 'contact_details_res',
-  CONTACT_CREATE_RESPONSE: 'contact_create_res'
+  CONTACT_CREATE_RESPONSE: 'contact_create_res',
+  CONTACTS_FILTER: 'contacts_filter',
+  CONTACTS_RESTORE: 'contacts_restore',
 };
 
 function contactsRequest() {
@@ -53,11 +55,16 @@ function performGetContactDetails(id) {
   }  
 }
 
+function action(type) {
+  return { type };
+}
+
 export function contacts() {
   return (dispatch, getState) => {
     let state = getState();
     if (!state.contacts || !state.contacts.length)
-      return dispatch(performGetContacts());    
+      return dispatch(performGetContacts());
+    return dispatch(action(ACTIONS.CONTACTS_RESTORE));
   }  
 }
 
@@ -76,7 +83,15 @@ export function contactDetails(id) {
 export function newContact(contact) {
   return (dispatch, getState) => {    
     return createContact(contact)
-    .then(id => dispatch(addConcactResponse(id, contact)));
-    // return dispatch(performGetContactDetails(id));    
+    .then(id => dispatch(addConcactResponse(id, contact)));    
   }  
+}
+
+export function filterContacts(searchTerm) {
+  return (dispatch, getState) => {    
+    return dispatch({
+      type: ACTIONS.CONTACTS_FILTER,
+      searchTerm
+    });    
+  }
 }

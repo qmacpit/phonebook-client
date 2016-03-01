@@ -2,12 +2,15 @@ import React, { Component } from 'react';
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
 
-import { contacts } from '../actions/actions';
+import { contacts, filterContacts } from '../actions/actions';
 
 class App extends Component {
   
   constructor(props) {
-    super(props);    
+    super(props);
+    this.state ={
+      searchTerm: ""
+    }
   }
 
   componentDidMount() {
@@ -15,7 +18,25 @@ class App extends Component {
     dispatch(contacts());
   }
 
+  performDispatch(func) {
+    const { dispatch } = this.props
+    dispatch(func()); 
+  }
+
+  filter(e) {
+    e.preventDefault();
+    let { value } = e.target;
+    console.log(value);
+    this.setState({
+      searchTerm: value
+    })
+    this.performDispatch(() => {
+      return filterContacts(value);  
+    });    
+  }
+
   render() {
+    console.log(this.state);
     return (
       <div>            
         {
@@ -23,6 +44,7 @@ class App extends Component {
           ? (
               <div className="six columns">
                 <h5>Contacts</h5>  
+                <input type="text" className="u-full-width" value={this.state.searchTerm} onChange={this.filter.bind(this)}/>
                 <ul>
                   {
                   this.props.contacts.map((current, index) => {                        
